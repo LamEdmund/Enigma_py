@@ -26,6 +26,7 @@ def drawIOStrings(Screen, input_string, output_string, width, height, Font):
 def drawComponents(EnigmaMachine, Screen, width, height, Font):
     # draw var for machine
     # margins = {'top': 200, 'bottom': 200, 'left': 100, 'right': 100}
+    text_color = 'white'
     x_coord = margins['left']
     y_coord = margins['top']
     x_spacing = 100
@@ -80,7 +81,29 @@ def drawComponents(EnigmaMachine, Screen, width, height, Font):
     x_coord = margins['left'] + component_width/2
     y_coord = margins['top']*4/5
     for name in ['Reflector', 'Rotor A', 'Rotor B', 'Rotor C', 'Plugboard', 'Keyboard/Lamp']:
-        label = Font.render(name, True, 'white')
+        label = Font.render(name, True, text_color)
         textbox = label.get_rect(center = (x_coord, y_coord) )
         Screen.blit(label, textbox)
+
+        # generate label for settings
+        if name == 'Reflector':
+            label = Font.render(EnigmaMachine.ukw, True, text_color)
+            textbox = label.get_rect(center = (x_coord, y_coord + component_height + margins['bottom']/2.5) )
+            Screen.blit(label, textbox)   
+        elif name == 'Rotor A':
+            label = Font.render(EnigmaMachine.RotorA_num, True, text_color)
+            textbox = label.get_rect(center = (x_coord, y_coord + component_height + margins['bottom']/2.5) )
+            Screen.blit(label, textbox)
+        elif name == 'Rotor B':
+            label = Font.render(EnigmaMachine.RotorB_num, True, text_color)
+            textbox = label.get_rect(center = (x_coord, y_coord + component_height + margins['bottom']/2.5) )
+            Screen.blit(label, textbox)
+        elif name == 'Rotor C':
+            label = Font.render(EnigmaMachine.RotorC_num, True, text_color)
+            textbox = label.get_rect(center = (x_coord, y_coord + component_height + margins['bottom']/2.5) )
+            Screen.blit(label, textbox)
+        elif name == 'Plugboard':
+            label = Font.render(EnigmaMachine.plug_connections, True, text_color)
+            textbox = label.get_rect(center = (x_coord, y_coord + component_height + margins['bottom']/2.5) )
+            Screen.blit(label, textbox)
         x_coord += component_width + x_spacing

@@ -18,7 +18,7 @@ if __name__ =='__main__':
     with open('src/settings.txt') as file:
         data = file.read()
     machine_setting = json.loads(data)
-    
+
     # RotorA, RotorB, RotorC, reflector, plug connections, rotor starting positions, ring settings
     # EnigmaMachine = Enigma('I', 'II', 'III', 'UKW-B', 'AB CD EF', 'AAC', 'AAA') # for debug
     EnigmaMachine = Enigma(machine_setting['RotorA'], 
@@ -58,8 +58,8 @@ if __name__ =='__main__':
                     EnigmaMachine.RotorA.step(1)
                 elif event.key == pygame.K_RIGHT:
                     EnigmaMachine.RotorC.step(1)
-                elif event.key == pygame.K_UP: # save for debug
-                    pass
+                # elif event.key == pygame.K_UP: # save for debug
+                #    pass
                 elif event.key == pygame.K_BACKSPACE: # clear text
                     input_string, output_string = '',''
                 else:

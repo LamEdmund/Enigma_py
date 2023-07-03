@@ -15,6 +15,11 @@ class Enigma:
                     }
     # Left to Right (A, B, C)
     def __init__(self, RotorA_num, RotorB_num, RotorC_num, ukw, plug_connections, rotor_positions, ring_settings):
+        self.ukw = ukw
+        self.RotorA_num = RotorA_num
+        self.RotorB_num = RotorB_num
+        self.RotorC_num = RotorC_num
+        self.plug_connections = plug_connections
         self.encryption_path = []
         self.Kb = Keyboard()
         self.RotorA = Rotor(self.rotor_Dict[RotorA_num][0], self.rotor_Dict[RotorA_num][1])

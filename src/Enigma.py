@@ -64,14 +64,29 @@ class Enigma:
             else: 
                 self.RotorC.step(1)
 
+            # foward
             signal = self.Kb.forward(letter)
             self.encryption_path.append(signal)
             self.encryption_path.append(signal)
+            for component in [self.Board, self.RotorC, self.RotorB, self.RotorA]:
+                signal = component.forward(signal)
+                self.encryption_path.append(signal)
+                self.encryption_path.append(signal)
+            # Reflector
+            signal = self.ReflectorRotor.forward(signal)
+            self.encryption_path.append(signal)
+            self.encryption_path.append(signal)
+            self.encryption_path.append(signal)
+            # backward
+            for component in [self.RotorA, self.RotorB, self.RotorC, self.Board]:
+                signal = component.backward(signal)
+                self.encryption_path.append(signal)
+                self.encryption_path.append(signal)
+            '''
             signal = self.Board.forward(signal)
             self.encryption_path.append(signal)
             self.encryption_path.append(signal)
             signal = self.RotorC.forward(signal)
-            self.encryption_path.append(signal)
             self.encryption_path.append(signal)
             self.encryption_path.append(signal)
             signal = self.RotorB.forward(signal)
@@ -95,10 +110,10 @@ class Enigma:
             signal = self.RotorC.backward(signal)
             self.encryption_path.append(signal)
             self.encryption_path.append(signal)
-            # back into plugboard and out to lamp
             signal = self.Board.backward(signal)
             self.encryption_path.append(signal)
             self.encryption_path.append(signal)
+            '''
             output_String += self.Kb.backward(signal)
         return output_String
 

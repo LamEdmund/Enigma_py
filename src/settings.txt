@@ -1,0 +1,9 @@
+{
+    "RotorA":"I",
+    "RotorB":"II", 
+    "RotorC":"III",
+    "Reflector":"UKW-B",
+    "Plugboard":"AB CD EF",
+    "RotorPositions":"CAT",
+    "RingSetting":"AAA"
+}

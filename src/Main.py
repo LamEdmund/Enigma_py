@@ -1,5 +1,6 @@
 import pygame
 import Draw
+import json
 from Enigma import Enigma
 
 if __name__ =='__main__':
@@ -13,8 +14,21 @@ if __name__ =='__main__':
     width = 1600
     height = 900
 
+    # load settings file and turn it into a dictionary
+    with open('src/settings.txt') as file:
+        data = file.read()
+    machine_setting = json.loads(data)
+    
     # RotorA, RotorB, RotorC, reflector, plug connections, rotor starting positions, ring settings
-    EnigmaMachine = Enigma('I', 'II', 'III', 'UKW-B', 'AB CD EF', 'AAC', 'AAA')
+    # EnigmaMachine = Enigma('I', 'II', 'III', 'UKW-B', 'AB CD EF', 'AAC', 'AAA') # for debug
+    EnigmaMachine = Enigma(machine_setting['RotorA'], 
+                           machine_setting['RotorB'], 
+                           machine_setting['RotorC'], 
+                           machine_setting['Reflector'], 
+                           machine_setting['Plugboard'], 
+                           machine_setting['RotorPositions'], 
+                           machine_setting['RingSetting']
+                        )
     Screen = pygame.display.set_mode((width, height))
 
     input_string = ''
